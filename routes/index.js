@@ -63,8 +63,11 @@ router.post('/addtodo', function(req, res) {
 	        console.log(error);
 	    } else {
 	        console.log(response.statusCode, body);
-	    }
-	});
+	        res.redirect('http://localhost:3000');
+      }
+	       
+
+  });
 
 });
 module.exports = router;

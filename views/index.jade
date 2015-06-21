@@ -1,5 +1,11 @@
-extends layout
+//ul
+//	for item in data
+//		li=item.data.name
 
-block content
-  h1= title
-  p Welcome to #{title}
+h1
+	table
+		for item in data
+			tr
+				td=item.data.name
+				td <input type="checkbox" name="agreement" checked=""/>
+		

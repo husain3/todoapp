@@ -19,27 +19,22 @@ request({url: url}, function (error, response, body) {
 
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-  //request.get('https://cryptic-dawn-8136.herokuapp.com/').auth('arshad', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC', false);
-  	request({
+
+    request({
     url: url, //URL to hit
     qs: {from: 'blog example', time: +new Date()}, //Query string data
-    method: 'GET', //Specify the method
+    method: 'GET', //Specify the method  
     headers: { //We can define headers too
         'Content-Type': 'MyContentType',
         'Custom-Header': 'Custom Value'
     }
-}, function(error, response, body){
-    if(error) {
-        console.log(error);
-    } else {
-        //console.log(response.statusCode, body);
-      /*body.find({}, {}, function(e, docs) {
-        res.render('index', {
-          "index" : docs
-        });
-      });*/
-    }
+    }, function(error, response, body){
+      if(error) {
+          res.render('index', { title: 'Express', data: []});
+      } else {
+          res.render('index', { title: 'Express', data: JSON.parse(body) });
+      }
+
 });
 
 	
@@ -61,6 +56,7 @@ router.post('/addtodo', function(req, res) {
 	    //Lets post the following key/values as form
 	    form: {
 	        name: newtodo
+	        //color: 'green'
 	    }
 	}, function(error, response, body){
 	    if(error) {
